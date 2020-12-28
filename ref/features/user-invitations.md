@@ -22,9 +22,9 @@ The usual flow for an invitation is the following:
     - A set of parameters that allow customizing the notifications sent to the receiver.
 
 2. IDS will then determine if the receiver already has an account or not.
-    - If that user already exists, he will be notified of the invitation via email with a link to access the client application (determined by the redirect URI or, if not specified, from the client configuration).No invitation will actually be created.
+    - If that user already exists, he will be notified of the invitation via email with a link to access the client application (determined by the redirect URI or, if not specified, from the client configuration). No invitation will actually be created.
 
-3. When the user does not exist, IDS will create a new invitation, generate a unique token for it, and send the receiver an email notification that contains a link that he can use to accept it.
+3. When the user does not exist, IDS will create a new invitation, generate a unique token for it, and send an email notification to the receiver, containing a link that he can use to accept it.
     - All invitations have an expiration time set. After that time elapses, they automatically expire and cannot be accepted any longer.
     - A user can be invited multiple times - from the same or from different client applications. When a new invitation is created, any previously existing (and pending) ones will be automatically canceled.
 
@@ -35,7 +35,7 @@ The usual flow for an invitation is the following:
 
 ## Receiver Identifier
 
-As mentioned above the receiver identifier is suggested by the client application. This is important because it allows the client application to store information about the potential user, before he actually exists.
+As mentioned above, the receiver identifier is suggested by the client application. This is important because it allows the client application to store information about the potential user, before he actually exists.
 
 IDS will always create the new user account - when the invitation is accepted - using this identifier to ensure that both "accounts" match (in IDS and in the client application).
 
@@ -66,7 +66,7 @@ Presently, the email notifications sent to the invitation receivers accept the f
 
 ## Limitations
 
-The current implementation of the user invitations feature has the following limitations:
+The current implementation has the following limitations:
 
-- The receivers, when creating their accounts, are bound to use email and password and they cannot create the account using an external login provider.
-- There is no mechanism to notify client applications when invitations are accepted or expire. Webhooks for these events will be implemented only on IDS Version 5.0.
+- The receivers, when creating their accounts, are bound to use email and password and cannot create their accounts using external login providers.
+- There is no mechanism to notify client applications when invitations are accepted or expire. Webhooks for these events will be available soon (in version 5.0).
