@@ -1,3 +1,3 @@
-# Identity Server Release Notes
+# Release Notes
 
 TO DO
