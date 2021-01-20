@@ -1,6 +1,6 @@
 # PRIMAVERA Identity Server Documentation
 
-Welcome to the PRIMAVERA Identity Server documentation project.
+Welcome to the [PRIMAVERA Identity Server](https://identity.primaverabss.com) documentation project.
 
 Here you will find information about Identity and Access Management in general (including OAuth and OIDC), Identity Server's features and how to customize it for specific scenarios, and instructions for implementing authentication and authorization for applications using Identity Server.
 
@@ -12,10 +12,10 @@ This project is structured in a way that reflects the different kinds of documen
 
 The following chapters are available:
 
-- [**Architecture**](arc/README.md) - the architecture in place and the technologies that drive Identity Server development.
+- [**Architecture**](arc/README.md) - the architecture in place and the technologies its development.
 - [**Capabilities**](capabilities/README.md) - a description of Identity Server's most important capabilities.
 - [**How to**](howto/README.md) - how to guides to integrate applications with Identity Server.
-- [**Reference**](ref/README.md) - reference documentation for the most important features provided by Identity Server, including its API, client libraries, and customizable behaviors.
+- [**Reference**](ref/README.md) - reference documentation for the most important features, including the API, client libraries, and customizable behaviors.
 
 ## Jump Start
 
@@ -29,15 +29,15 @@ The current version of Identity Server in production is **version 4.5**.
 
 ### Identity Server 5.0
 
-Version 5.0 is currently under development and will be available soon, developed with .NET Core 3.1.
+Version 5.0 is currently under development and will be available soon, developed with .NET Core 3.1 and [Duende Identity Server](https://duendesoftware.com/products/identityserver).
 
 ### Identity Server 4.5
 
-This version updated Identity Server to be compatible with .NET Core 2.1.
+This version updated Identity Server to be compatible with .NET Core 2.1 and [IdentityServer4](https://github.com/IdentityServer/IdentityServer4).
 
 ### Identity Server 4.0
 
-This was the first major release of Identity Server, developed with .NET Core 2.0.
+This was the first major release of Identity Server, developed with .NET Core 2.0 and and [IdentityServer4](https://github.com/IdentityServer/IdentityServer4).
 
 ## Release Notes
 
