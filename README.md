@@ -12,18 +12,18 @@ This project is structured in a way that reflects the different kinds of documen
 
 The following chapters are available:
 
-- [**vision**](vision/README.md) - the vision behind Identity Server and the general principles and technologies that drive its development.
+- [**Vision**](vision/README.md) - the vision behind Identity Server and the general principles and technologies that drive its development.
 - [**Capabilities**](capabilities/README.md) - a description of the most important Identity Server capabilities.
 - [**Reference**](ref/README.md) - reference documentation, including technologies, libraries, features, and specific use cases.
 - [**Implementation**](impl/README.md) - technical details about the internal implementation of Identity Server.
 - [**How to**](howto/README.md) - how to guides to integrate applications with Identity Server, customize it, etc.
-- [**Samples**](sames/README.md) - samples that illustrate IAM concepts, common integration scenarios, customization, etc.
+- [**Samples**](samples/README.md) - samples that illustrate IAM concepts, common integration scenarios, customization, etc.
 
 ## Jump Start
 
-If you wish to implement authentication and authorization in an application with Identity Server, while going through the documentation, start with the [how to](howto/README.md) and [samples](samples/README.md) sections.
+If you wish to implement authentication and authorization in an application with Identity Server, while going through the documentation, start with the [How to](howto/README.md) and [Samples](samples/README.md) sections.
 
-To search for a specific feature, check [capabilities](capabilities/README.md).
+To search for a specific feature, check [Capabilities](capabilities/README.md).
 
 ## Major Releases
 
@@ -31,7 +31,7 @@ The current version of Identity Server is **version 4.5**.
 
 ### Identity Server 5.0
 
-Version 5.0, , developed with [.NET Core 3.1](https://dotnet.microsoft.com/download/dotnet-core/3.1) and [Duende Identity Server](https://duendesoftware.com/products/identityserver), is currently under development and will be available soon.
+Version 5.0, developed with [.NET Core 3.1](https://dotnet.microsoft.com/download/dotnet-core/3.1) and [Duende Identity Server](https://duendesoftware.com/products/identityserver), is currently under development and will be available soon.
 
 > The documentation available here is designed for Version 5.0. Most of it also applies to Version 4.5.
 

@@ -1,6 +1,6 @@
-# Sample Hybrid Client with Consent
+# Sample - Hybrid Client with Consent
 
-This samples shows how to create a client application that uses the Hybrid flow to authenticate users and requires consent.
+This sample shows how to create a client application that uses the Hybrid flow to authenticate users and request them consents.
 
 > The source code is available in the Identity Server samples folder.
 
@@ -8,11 +8,13 @@ This samples shows how to create a client application that uses the Hybrid flow 
 
 The hybrid grant type allows client applications to authenticate users with Identity Server and perform API calls using the identity token issued for the authenticated user.
 
-You can associate to this client application a requirement to present a the user with a consent, to inform him of the "permissions" he will be granting the application and allow him to accept or deny it. After the user grants the consent, he will always have the possibility to revoke it from Identity Server's account front-office (under Security/Consents). Once revoked, the application will no longer be able to perform requests on behalf of the user and will be require to repeat the authorization flow.
+You can associate an extra requirement to present the user with a consent, to inform him of the "permissions" he will be granting the application and allow him to accept or deny it.
+
+> After the user grants the consent, he will always have the possibility to revoke it from the account front-office (under Security/Consents). Once the consent is revoked, the application will no longer be able to perform requests on behalf of the user and will be required to repeat the authorization flow.
 
 ## Client Configuration
 
-This samples requires the configuration of a new client - called `identityserver-sample-hybridclientwithconsent` - in the IDS back-office. This client should be created with the following configuration:
+This samples requires the configuration of a new client - called `identityserver-sample-hybridclientwithconsent` - in the IDS back-office. This client should be created with the following configuration options:
 
 | Configuration | Value |
 | - | - |
@@ -28,7 +30,9 @@ This samples requires the configuration of a new client - called `identityserver
 
 ## Behavior
 
-When the application is executed it will open a browser and show the home page. This page does not require authentication and it just shows a simple description of the application:
+When the application is executed it will open a browser and show the home page.
+
+This page does not require authentication:
 
 ![Home Page](_assets/hybrid-client-with-consent-1.png "Home Page")
 
@@ -40,13 +44,13 @@ Notice the "Sign-in" menu. This is how authorization and user authentication hap
 
 ![User Consent](_assets/hybrid-client-with-consent-2.png "User Consent")
 
-> Notice that "Personal Information" and "Application access" are listing the scopes requested by this application (see the client configuration and the noted below).
+> Notice that "Personal Information" and "Application access" list the scopes requested (see the client configuration and the noted below).
 
-3. After the user accepts the consent, he is redirected back to the application to this page:
+3. After the user accepts the consent, he is redirected back to the application to a page (route):
 
 ![User Claims](_assets/hybrid-client-with-consent-3.png "User Claims")
 
-> The page lists the user claims, which are derived directly from the identity token obtained from IDS.
+> The page lists the user claims, which are derived directly from the identity token issued by IDS.
 
 ## Worth Noting
 
@@ -105,7 +109,6 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-Notice the following in particular:
 - `AddAuthentication()`, `AddCookie()`, and `AddOpenIdConnect()` configure the whole authentication using OIDC.
 - How the Hybrid grant flow is requested (in `options.ResponseType`).
 - How the client is set (`options.ClientId`) and scopes are requested (`options.Scopes`) 
@@ -125,11 +128,11 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 }
 ```
 
-> Keep in mind that the position of `UseAuthentication()` and `UseAuthorization()` relative to each other and relative to other middleware (`UseRouting()` and `UseEndpoints()` in particular) is relevant.
+> Keep in mind that the position of `UseAuthentication()` and `UseAuthorization()` relative to each other and relative to other middleware - `UseRouting()` and `UseEndpoints()` in particular - is relevant.
 
 ### Authorization Handler
 
-The only thing left to configure the adequate controller actions to force user authentication is to add the `[Authorize]` attribute like this:
+The only thing left to configure is to add the `[Authorize]` attribute to the adequate controller actions to force user authentication:
 
 ```csharp
 /// <summary>

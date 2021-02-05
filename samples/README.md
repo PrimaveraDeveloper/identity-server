@@ -4,7 +4,7 @@ This chapter includes samples that illustrate IAM concepts, common integration s
 
 The samples are organized by theme.
 
-> The samples source code is available along with Identity Server source code.
+> The samples source code is available along with Identity Server's source code.
 
 ## Client Applications
 
