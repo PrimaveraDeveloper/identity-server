@@ -1,38 +1,35 @@
 # Reference
 
-This chapter includes reference documentation about the most important features and components of Identity Server.
+This chapter includes reference documentation including technologies, libraries, features, and specific use cases.
+
+## Technologies
+
+> This topic is under development.
+
+| Component | Description |
+| - | - |
+| [OAuth](oauth/README.md) | OAuth 2.0 is the industry-standard protocol for authorization |
+| [OpenID Connect](oidc/README.md) | OIDC is a simple identity layer on top of OAuth 2.0 to allows clients to verify the identity of the end-user |
+| [ASP.NET Core Identity](aspnet-identity/README.md) | ASP.NET Core Identity is an API that supports user interface (UI) login functionality (users, passwords, profile, roles, claims, etc.) |
+
+## Main Components
+
+> This topic is under development.
+
+| Component | Description |
+| - | - |
+| [Front-office](front-office/README.md) | The front-office is the Web application that serves the users login and profile management experiences |
+| [Back-office](back-office/README.md) | The back-office is a Web application that allows managers and contributors to configure Identity Server |
+| [Web API](web-api/README.md) | The Web API that allows client applications to perform operations like creating clients, configuring resources, etc. |
+| [Client Libraries](client-libraries/README.md) | The client libraries provide recommended models to consume the Web API |
 
 ## Features
 
-Identity Server provides many features that extend the Identity and Access Management core features (authorization and authentication).
-
 > This topic is under development.
+
+Identity Server provides many features that are described in the following documents.
 
 | Feature | Description |
 | - | - |
-| [Client Overrides](features/client-overrides.md) | Allows customization of IDS user interface, notifications, etc. based on the client application. |
-| [User Invitations](features/user-invitations.md) | Allows client applications to invite users to create their accounts on behalf of another (registered) user.|
-
-## Front-office
-
-The front-office is the Web application that serves the users login and profile management experiences.
-
-> This topic is under development.
-
-## Back-office
-
-The back-office is a Web application that allows managers and contributors to configure Identity Server, including managing the OAuth and OIDC entities (clients, resources, users, etc.) and other settings, and allow customizing Identity Server's behavior for specific scenarios.
-
-> This topic is under development.
-
-## Web API
-
-Identity Server features a Web API that allows client applications (with the adequate authorization scopes) to perform operations like creating clients, configuring resources, etc..
-
-> This topic is under development.
-
-## Client Libraries
-
-Although the Web API can be consumed directly (via HTTP), the following client libraries are also available to accelerate development.
-
-> This topic is under development.
+| [Client Overrides](features/client-overrides.md) | Allows customization of IDS user interface, notifications, etc. based on the client application |
+| [User Invitations](features/user-invitations.md) | Allows client applications to invite users to create their accounts on behalf of another (registered) user |
