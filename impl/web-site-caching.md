@@ -1,9 +1,10 @@
 # Implementation - Web Site - Caching
 
-Identity Server has two main caching services in place:
+Identity Server has 3 main caching services in place:
 
 - `ICacheService` - a global distributed cache that uses REDIS (`IDistributedCache`).
 - `ISessionCacheService` - a distributed cache (stored in the database) that is scoped to the user session.
+- `ISessionOneTimeCacheService` - a distributed cache (stored in the database) that is scoped to the user session and whose items can only be read once.
 
 ## Global Cache
 
@@ -17,6 +18,8 @@ This cache may have effect on changes made in the back-office like:
 ## Session Cache
 
 `ISessionCacheService` is associated with the user session. Because of that it only stores data specific and meaningful to a specific user. Underneath it relies on ASP.NET Session.
+
+`ISessionOneTimeCacheService` is a particular case of `ISessionCacheService`. Cache items stored in this cache can only be read once, as they are automatically removed after being read (which is useful for example to store temporary error messages and validation codes).
 
 Data is stored in the database in table `[IDSv4-Custom].[SessionCache]`.
 

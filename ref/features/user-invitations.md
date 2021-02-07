@@ -62,11 +62,11 @@ Presently, the email notifications sent to the invitation receivers accept the f
 - `IDSSubscriptionAlias` - the alias (identifier) of the subscription in the client application that the new user will have access to.
 - `IDSSubscriptionDescription` - the description of the subscription.
 
-> These parameters are optional. The body of the notification sent to the user will change accordingly.
+## Webhooks
 
-## Limitations
+IDS supports the following webhooks for user invitations:
 
-The current implementation has the following limitations:
-
-- The receivers, when creating their accounts, are bound to use email and password and cannot create their accounts using external login providers.
-- There is no mechanism to notify client applications when invitations are accepted, expire or are canceled. Webhooks for these events will be available in IDS v5.0.
+- `UserInvitation_Created` - when a new user invitation is registered.
+- `UserInvitation_Accepted` - when the user accepts an invitation (meaning it created his user account).
+- `UserInvitation_Canceled` - when a user invitation is canceled by the client application.
+- `UserInvitation_Expired` - when a user invitation expires.
