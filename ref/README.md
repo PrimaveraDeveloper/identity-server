@@ -32,4 +32,5 @@ Identity Server provides many features that are described in the following docum
 | Feature | Description |
 | - | - |
 | [Client Overrides](features/client-overrides.md) | Allows customization of IDS user interface, notifications, etc. based on the client application |
+| [Import](features/import.md) | Allows importing resources (API scopes, API resources and clients) in a single operation |
 | [User Invitations](features/user-invitations.md) | Allows client applications to invite users to create their accounts on behalf of another (registered) user |
