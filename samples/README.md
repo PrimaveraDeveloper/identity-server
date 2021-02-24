@@ -12,4 +12,22 @@ These samples illustrate the configuration of client applications to integrate w
 
 | Sample | Grant Type | Description |
 | - | - | - |
-| [HybridClientWithConsent](hybrid-client-with-consent.md) | Hybrid | A client application that uses the Hybrid flow to authenticate users and requires consent |
+| [`HybridClientWithConsent`](hybrid-client-with-consent.md) | Hybrid | Illustrates an ASP.NET client application that uses the Hybrid flow to authenticate users and require explicit consent |
+| [`Delegation`](delegation-grant.md) | Delegation | Illustrates an ASP.NET client application that uses the Delegation flow to call a back-end API on behalf of an user |
+
+## Important
+
+You can manipulate the base addresses of the sample applications and the base address of the Identity Server instance used in the `appsettings.json` file. Here's an example:
+
+```json
+{
+    "SAMPLE_AUTHORITYSERVER_BASEADDRESS": "https://localhost:5001",
+    "SAMPLE_MIDDLETIER_BASEADDRESS": "https://localhost:20002",
+    "Logging": {
+        "LogLevel": {
+            "Default": "Information"
+        }
+    },
+    "AllowedHosts": "*"
+}
+```

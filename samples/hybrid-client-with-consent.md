@@ -2,29 +2,34 @@
 
 This sample shows how to create a client application that uses the Hybrid flow to authenticate users and request them consents.
 
-> The source code is available in the Identity Server samples folder.
+The projects required for this sample are:
+
+- `HybridClientWithConsent.csproj`
 
 ## Concept
 
 The hybrid grant type allows client applications to authenticate users with Identity Server and perform API calls using the identity token issued for the authenticated user.
 
-You can associate an extra requirement to present the user with a consent, to inform him of the "permissions" he will be granting the application and allow him to accept or deny it.
+You can associate an extra requirement to present the user with a consent, to inform him of the "permissions" he will be granting to the application and allow him to accept or deny them.
 
 > After the user grants the consent, he will always have the possibility to revoke it from the account front-office (under Security/Consents). Once the consent is revoked, the application will no longer be able to perform requests on behalf of the user and will be required to repeat the authorization flow.
 
-## Client Configuration
+## Resources Configuration
 
-This samples requires the configuration of a new client - called `identityserver-sample-hybridclientwithconsent` - in the IDS back-office. This client should be created with the following configuration options:
+This sample requires the following resources to be configured in the back-office:
+
+### Clients
 
 | Configuration | Value |
 | - | - |
+| Client Id. | `identityserver-sample-hybridclientwithconsent` |
 | Require client secret | `false` |
 | Require consent | `true` |
 | Allow remembering consent | `true` |
 | Allow access tokens via browser | `true` |
 | Require PKCE | `false` |
-| Grant types | `Hybrid` |
-| Scopes | `openid email profile identityserver4` |
+| Allowed Grant types | `hybrid` |
+| Allowed Scopes | `openid email profile identityserver4` |
 | Redirect URIs | `https://localhost:[PORT]/signin-oidc` |
 | Post-logout redirect URIs | `https://localhost:[PORT]/signout-callback-oidc` |
 
@@ -44,7 +49,7 @@ Notice the "Sign-in" menu. This is how authorization and user authentication hap
 
 ![User Consent](_assets/hybrid-client-with-consent-2.png "User Consent")
 
-> Notice that "Personal Information" and "Application access" list the scopes requested (see the client configuration and the noted below).
+> Notice that "Personal Information" and "Application access" list the scopes requested (see the client configuration and the notes below).
 
 3. After the user accepts the consent, he is redirected back to the application to a page (route):
 
@@ -56,7 +61,7 @@ Notice the "Sign-in" menu. This is how authorization and user authentication hap
 
 The actual implementation if very straightforward.
 
-### Authorization and Authentication Configuration
+### Authorization and Authentication
 
 Authorization and authentication are setup in `Startup.cs`:
 
@@ -87,7 +92,7 @@ public void ConfigureServices(IServiceCollection services)
             (options) =>
             {
                 options.SignInScheme = "Cookies";
-                options.Authority = "https://localhost:5001";
+                options.Authority = this.Configuration.GetValue<string>("SAMPLE_AUTHORITYSERVER_BASEADDRESS");
                 options.RequireHttpsMetadata = false;
                 options.ClientId = "identityserver-sample-hybridclientwithconsent";
                 options.ResponseType = "code id_token token";
@@ -110,10 +115,8 @@ public void ConfigureServices(IServiceCollection services)
 ```
 
 - `AddAuthentication()`, `AddCookie()`, and `AddOpenIdConnect()` configure the whole authentication using OIDC.
-- How the Hybrid grant flow is requested (in `options.ResponseType`).
+- How the `Hybrid` grant flow is requested (in `options.ResponseType`).
 - How the client is set (`options.ClientId`) and scopes are requested (`options.Scopes`) 
-
-> When executing the sample, do not forget to update the Identity Server base address (in `options.Authority`).
 
 ```
 public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
