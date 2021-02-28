@@ -1,4 +1,4 @@
-# Feature - User Invitations
+# Reference - User Invitations
 
 User invitations is a feature of Identity Server that allows any registered client application (with the appropriate scope) to invite a person (the **invitation receiver**) to create a new account on Identity Server so he can access that client application. These persons are invited on behalf of another existing user (the **invitation sender**).
 

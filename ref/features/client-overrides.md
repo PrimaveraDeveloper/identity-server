@@ -1,4 +1,4 @@
-# Feature - Client Overrides
+# Reference - Client Overrides
 
 Although Identity Server can be used by itself - to manage it using the back-office for example - usually it is used in the context of a client application, which triggers its features, like, for example, the UI to sign-in the user.
 

@@ -1,4 +1,4 @@
-# Feature - Import
+# Reference - Import Resources
 
 The Lithium Framework generates a file for each microservice that is called an Authorization Spec. These files include the specification of the API scopes, the API resource, and the Clients required in Identity Server to make that service work correctly.
 
