@@ -12,17 +12,17 @@ In a Web-based, RESTfull, world there are 2 frameworks that have become de-facto
 - [OAuth 2.0](https://oauth.net/2/)
 - [OpenID Connect](https://openid.net/connect/)
 
-PRIMAVERA Identity Server is an Identity and Access Management solution that supports OAuth and OIDC and was designed and is maintained by PRIMAVERA to provide exactly these 2 requirements for all PRIMAVERA's products (cloud or on-premises).
+PRIMAVERA Identity Server is an Identity and Access Management solution that supports OAuth and OIDC and was designed and is maintained by PRIMAVERA to provide exactly these 2 requirements for all PRIMAVERA's products (cloud and on-premises).
 
 ## Authentication & Authorization
 
-**Authentication** refers to the fact that the application needs to validate and know the identity of the user accessing it. Typically, these applications manage data on behalf of that user and need to ensure that the user can only access the resources for which he is allowed.
+**Authentication** refers to the fact that an application needs to validate and know the identity of the user accessing it. Typically, these applications manage data on behalf of that user and need to ensure that the user can only access the resources for which he is allowed.
 
 The most common protocols used for authentication are SAML2p, WS-Federation, and OpenID Connect. OIDC is the newest of the three, but it is also the one with more potential going forward, as it was designed for mobile scenarios and to be API friendly.
 
 **Authorization**, on the other hand, refers to an application having the need to verify that a third-party - another application or even user - can access (and use or manipulate) a designated resource (something owned by an user or an application).
 
-Applications have fundamentally three ways of communicating with APIs: (1) using the application identity; (2) delegation the signed-in user identity; (3) a combination of the previous two.
+Applications have fundamentally three ways of communicating with APIs: (1) using the application identity; (2) delegating the signed-in user identity; (3) a combination of the previous two.
 
 OAuth 2.0 is a protocol that allows applications to request access tokens from an Authority Server and use them to communicate with APIs.
 
@@ -38,22 +38,22 @@ IDS was first conceived to provide authentication and authorization features sol
 
 The implementation is, to some extent, customized and specific to support scenarios required by PRIMAVERA's business model.
 
-The PRIMAVERA's view point, the value proposition is:
+From PRIMAVERA's view point, the value proposition is:
 
-- A single, reusable, solution for user authentication and single-sign-on accross app products.
-- A single, reusable, solution for API protection and third-party applications authorization.
+- A single, reusable, solution for user authentication and single-sign-on accross all products.
+- A single, reusable, solution for API protection and authorization of third-party applications.
 - An extensible and customizable IAM implementation, including OAuth 2.0 and OIDC, but also extension points to support additional protocols in the future.
 - A managed back-office to configure and operate the system.
 
 From the end-user's perspective:
 
-- A unified single-sign-in and single-sign-on experience accross all PRIMAVERA's products.
+- A unified single-sign-on and single-sign-out experience accross all PRIMAVERA's products.
 - Integration with popular general purpose identity providers like Google, Microsoft, and Apple.
 
 From the view point of third-parties (developers that integrate somehow with PRIMAVERA's APIs):
 
-- Standards-based mechanisms to communicate with PRIMAVERA's APIs.
-- A reusable solution for authentication in their own application.
+- Standards-based mechanisms to communicate and perform authorization and authentication.
+- A reusable solution for authentication in their own applications.
 
 ## High-level Architecture
 
@@ -63,13 +63,11 @@ The following diagram depicts the high level architecture of Identity Server:
 
 Identity Server is a Web application that has 4 main components:
 
-1. The **core endpoints**, which are the endpoints that implement the OAuth and OIDC protocols.
+1. The **core endpoints**, which are the endpoints that support the OAuth and OIDC protocols.
 2. A **front-office**, which includes the user sign-in experience and a Web site for the user to manage his account.
 3. A **back-office**, which is a Web site that allows managers (and contributors) to configure IDS and manage all resources.
 4. A **Web API**, that provides access to IDS resources, protected as you would expect by IDS itself.
 
-Resource servers protect their resources using Identity Server.
+Resource servers protect their resources using Identity Server. Client applications use Identity Server as Security Token Service to obtain access tokens and/or authenticate users. Both communicate with IDS via the core endpoints and, optionally, the Web API.
 
-Client applications use Identity Server as Security Token Service to obtain access tokens and/or authenticate users.
-
-> The more details about these components, please review [Reference](../ref/README.md).
+> The more details about these components, check out the [Reference](../ref/README.md).

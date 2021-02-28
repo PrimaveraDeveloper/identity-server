@@ -1,8 +1,8 @@
 # Reference - Token Endpoint
 
-The Token Endpoint can be used by client applications to retrieve access tokens programmatically, using a specific grant type (from the standard grants defined by the specs or extension grant types supported by the authority server).
+The Token Endpoint can be used by client applications to retrieve access tokens programmatically, using a specific grant type (from the standard grants defined by the specs or extension grant types supported by IDS).
 
-## Endpoint
+## Route
 
 `POST /connect/token`
 
@@ -19,7 +19,7 @@ Identity Server supports the following grant types:
 
 > Delegation is an extension grant.
 
-> Password and Implicit (not listed) are considered legacy in OAuth 2.0.
+> Password and Implicit (not listed) are legacy (as per OAuth 2.0).
 
 ## Parameters
 
@@ -42,7 +42,7 @@ This endpoint accepts a combination of the following parameters, depending on th
 
 ## Example Request
 
-Here is an example request to retrieve a token for the client credentails grant type:
+Here is an example request to retrieve a token with the client credentails grant type:
 
 ```
 POST /connect/token
@@ -58,4 +58,4 @@ CONTENT-TYPE application/x-www-form-urlencoded
 
 You can invoke the endpoint directly as any other HTTP call.
 
-However it is easier to use `Primavera.Hydrogen.IdentityModel.Client.TokenClient` as it provides methods tailored for each grant type and it deals with encoding the parameters and parsing the response correctly.
+However, it is easier to use `Primavera.Hydrogen.IdentityModel.Client.TokenClient` as it provides methods tailored for each grant type and it deals with encoding the parameters and parsing the response correctly.
