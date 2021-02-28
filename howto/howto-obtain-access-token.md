@@ -15,9 +15,13 @@ The simplest and most common form is retrieving a client credentials access toke
 Here's an example:
 
 ```csharp
-using HttpRequestMessage httpRequest = new HttpRequestMessage(HttpMethod.Post, $"{authorityServer}/connect/token");
+using HttpRequestMessage httpRequest = new HttpRequestMessage(
+    HttpMethod.Post, 
+    $"{authorityServer}/connect/token");
 
-httpRequest.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+httpRequest.Headers.Accept.Add(
+    new MediaTypeWithQualityHeaderValue(
+        "application/json"));
 
 httpRequest.Content = new FormUrlEncodedContent(
     new Dictionary<string, string>()
@@ -30,7 +34,10 @@ httpRequest.Content = new FormUrlEncodedContent(
 
 using HttpClient httpClient = new HttpClient();
 
-using HttpResponseMessage httpResponse = await httpClient.SendAsync(httpRequest).ConfigureAwait(false);
+using HttpResponseMessage httpResponse = 
+    await httpClient.SendAsync(
+        httpRequest)
+        .ConfigureAwait(false);
 
 if (!httpResponse.IsSuccessStatusCode)
 {
@@ -38,9 +45,11 @@ if (!httpResponse.IsSuccessStatusCode)
         $"Token request failed with error: {httpResponse.ReasonPhrase}.");
 }
 
-string json = await httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
+string json = await httpResponse.Content
+    .ReadAsStringAsync().ConfigureAwait(false);
 
-JsonDocument jsonDocument = JsonDocument.Parse(json);
+JsonDocument jsonDocument = JsonDocument.Parse(
+    json);
 
 if (!jsonDocument.RootElement.TryGetProperty("access_token", out JsonElement accessToken))
 {
@@ -59,7 +68,7 @@ return accessToken.GetString();
 
 ## Using `TokenClient`
 
-`Primavera.Hydrogen.IdentityModel.Client.TokenClient` allows performing these request with less ceremony.
+`Primavera.Hydrogen.IdentityModel.Client.TokenClient` allows performing these requests with less ceremony.
 
 ```csharp
 using (ITokenClient client = new TokenClient())
