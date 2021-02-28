@@ -1,3 +1,3 @@
-# Reference - Client Libraries
+# Reference - Endpoints
 
 This topic is under development...

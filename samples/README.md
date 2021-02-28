@@ -8,12 +8,12 @@ The samples are organized by theme.
 
 ## Client Applications
 
-These samples illustrate the configuration of client applications to integrate with Identity Server.
+These samples illustrate the configuration of client applications to integrate with Identity Server using different grant types and some not-so-obvious features.
 
 | Sample | Grant Type | Description |
 | - | - | - |
-| [`HybridClientWithConsent`](hybrid-client-with-consent.md) | Hybrid | Illustrates an ASP.NET client application that uses the Hybrid flow to authenticate users and require explicit consent |
-| [`Delegation`](delegation-grant.md) | Delegation | Illustrates an ASP.NET client application that uses the Delegation flow to call a back-end API on behalf of an user |
+| [`HybridClientWithConsent`](hybrid-client-with-consent.md) | Hybrid | Illustrates a client application (ASP.NET Core) that uses the Hybrid flow to authenticate users and require explicit consent |
+| [`Delegation`](delegation-grant.md) | Delegation | Illustrates a client application (ASP.NET Core) that uses the Delegation flow to call a back-end API on behalf of an user |
 
 ## Important
 

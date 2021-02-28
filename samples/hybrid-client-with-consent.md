@@ -18,6 +18,8 @@ You can associate an extra requirement to present the user with a consent, to in
 
 This sample requires the following resources to be configured in the back-office:
 
+> You can use the file `HybridClientWithConsent.authzspec.json` to import these resources in the back-office.
+
 ### Clients
 
 | Configuration | Value |
