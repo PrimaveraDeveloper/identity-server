@@ -11,7 +11,11 @@
 
 **Accounts**
 
-- Users with external logins only can no longer set a password in their account.
+- Users with external logins only can no longer set a password in their account from the profile.
+
+**Front-office**
+
+- Sign-in and sign-up with email are no longer available in the first sign-in/sign-up view. The user is required to select that sign-in/sign-up option like it does for external login providers. This is to promote the usage of external login providers instead of email/password for login.
 
 **Back-office**
 

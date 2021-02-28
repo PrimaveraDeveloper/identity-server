@@ -4,6 +4,8 @@ This chapter includes reference documentation about the capabilities supported b
 
 This the list of all the capabilities (ordered alphabetically):
 
+- Client Credentials Flow (see [Client Credentials Grant Type](./client-credentials-grant.md))
+- [Client Credentials Grant Type](./client-credentials-grant.md)
 - [Client Overrides](./client-overrides.md)
 - [Consents](./consents.md)
 - Customization of the User Interface (see [Client Overrides](./client-overrides.md))
