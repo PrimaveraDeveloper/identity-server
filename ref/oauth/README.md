@@ -1,3 +1,0 @@
-# Technology - OAuth
-
-Under development...
