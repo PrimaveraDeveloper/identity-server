@@ -6,4 +6,4 @@ The client credentials grant type is an authorization grant flow that is part of
 
 This grant type is most adequate for server-to-server integrations where no user identity is involved.
 
-> There are [samples](../samples/README.md) available to illustrate this feature.
+> There are [samples](../samples/README.md) available to illustrate this grant type.

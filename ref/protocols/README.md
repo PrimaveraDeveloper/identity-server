@@ -7,3 +7,4 @@ The following documents describe several aspects of the IAM protocols, framework
 | OAuth | OAuth 2.0 is the industry-standard protocol for authorization |
 | OpenID Connect | OIDC is a simple identity layer on top of OAuth 2.0 to allows clients to verify the identity of the end-user |
 | ASP.NET Core Identity | ASP.NET Core Identity is an API that supports user interface (UI) login functionality (users, passwords, profile, roles, claims, etc.) |
+| Duende Identity Server | Duende Identity Server is nn OAuth 2.0 and OIDC framework for ASP.NET Core |

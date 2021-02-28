@@ -55,7 +55,7 @@ When the console application is run it will:
 
 ## Worth Noting
 
-The only aspect worth noting is how the access token is obtained from Identity Server.
+The only aspects worth noting is how the access token is obtained from Identity Server and that access token is sent in the requests to the API.
 
 ### Obtaining the access token with `HttpClient`
 
@@ -65,4 +65,14 @@ This is implemented in `Application.RetrieveAcessTokenWithHttpClientAsync()`.
 
 This is implemented in `Application.RetrieveAcessTokenWithTokenClientAsync()`.
 
-Notice that the code is simpler as you are not required to deal with how the request should be encoded, deserialized, etc.
+Notice that the code is simpler as you do not have to deal with how the request should be encoded, deserialized, etc.
+
+### Setting the access token in the API requests
+
+See `Application.RetrieveClientsAsync()`. The access token is sent in the `Authorization` header:
+
+```csharp
+httpRequest.Headers.TryAddWithoutValidation("Authorization", $"Bearer {accessToken}");
+```
+
+> `Bearer` is the default authentication scheme used for OAuth and JWT bearer tokens.
