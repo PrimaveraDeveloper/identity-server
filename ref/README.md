@@ -4,7 +4,7 @@ This chapter includes reference documentation including technologies, libraries,
 
 | Topic | Description |
 | - | - |
-| [Protocols](protocols/README.md) | Identity Server implements and supports several IAM protocols, frameworks, and technologies |
+| [Protocols and Frameworks](protocols/README.md) | Identity Server implements and supports several IAM protocols, frameworks, and technologies |
 | [Front-office](back-office/README.md) | The Web application that serves the users login and profile management experiences |
 | [Back-office](back-office/README.md) | The Web application that allows managers and contributors to configure Identity Server |
 | [Endpoints](endpoints/README.md) | The OAuth and OIDC endpoints supported by Identity Server |

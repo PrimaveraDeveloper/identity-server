@@ -13,7 +13,6 @@ This project is structured in a way that reflects the different kinds of documen
 The following chapters are available:
 
 - [**Vision**](vision/README.md) - the vision behind Identity Server and the general principles and technologies that drive its development.
-- [**Capabilities**](capabilities/README.md) - a description of the most important Identity Server capabilities.
 - [**Reference**](ref/README.md) - reference documentation, including technologies, libraries, features, and specific use cases.
 - [**Implementation**](impl/README.md) - technical details about the internal implementation of Identity Server.
 - [**How to**](howto/README.md) - how to guides to integrate applications with Identity Server, customize it, etc.
@@ -22,8 +21,6 @@ The following chapters are available:
 ## Jump Start
 
 If you wish to implement authentication and authorization in an application with Identity Server, while going through the documentation, start with the [How to](howto/README.md) and [Samples](samples/README.md) sections.
-
-To search for a specific feature, check [Capabilities](capabilities/README.md).
 
 ## Major Releases
 
