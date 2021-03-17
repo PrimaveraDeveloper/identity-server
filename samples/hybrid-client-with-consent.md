@@ -18,7 +18,7 @@ You can associate an extra requirement to present the user with a consent, to in
 
 This sample requires the following resources to be configured in the back-office:
 
-> You can use the file `HybridClientWithConsent.authzspec.json` to import these resources in the back-office.
+> Use `HybridClientWithConsent.authzspec.json` to import these resources in the back-office.
 
 ### Clients
 
@@ -47,13 +47,13 @@ Notice the "Sign-in" menu. This is how authorization and user authentication hap
 
 1. The user is redirected to the IDS sign-in screen.
 
-2. After he signs-in, the consent is presented to the user so he can accept it:
+2. After he signs-in, the consent is presented so he can accept it:
 
 ![User Consent](_assets/hybrid-client-with-consent-2.png "User Consent")
 
 > Notice that "Personal Information" and "Application access" list the scopes requested (see the client configuration and the notes below).
 
-3. After the user accepts the consent, he is redirected back to the application to a page (route):
+3. After the user accepts the consent, he is redirected back to the application:
 
 ![User Claims](_assets/hybrid-client-with-consent-3.png "User Claims")
 

@@ -6,6 +6,25 @@ The Token Endpoint can be used by client applications to retrieve access tokens 
 
 `POST /connect/token`
 
+## Parameters
+
+This endpoint accepts a combination of the following parameters, depending on the grant type.
+
+| Parameter | Description |
+| - | - |
+| `client_id` | Client identifier (required) |
+| `client_secret` | Client secret (optional) |
+| `grant_type` | Grant type (required) (see below) |
+| `scope` | Scopes requested (optional) |
+| `redirect_uri` | The redirect URI (required for `authorization_code`) |
+| `code` | The authorization code (required for `authorization_code`) |
+| `code_verifier` | PKCE proof key (required for `authorization_code` with PKCE) |
+| `username` | The user name (required for `password`) |
+| `password` | Client identifier (required for `password`) |
+| `acr_values` | Additional authentication information (optional for `password`) |
+| `refresh_token` | Refresh token (required for `refresh_token`) |
+| `device_code` | Device code (required for `urn:ietf:params:oauth:grant-type:device_code`) |
+
 ## Grant Types
 
 Identity Server supports the following grant types:
@@ -17,32 +36,13 @@ Identity Server supports the following grant types:
 - Password (`password`)
 - Refresh Token (`refresh_token`)
 
+> Password and Implicit (not listed) are legacy (as proposed for OAuth 2.1).
+
 > Delegation is an extension grant.
-
-> Password and Implicit (not listed) are legacy (as per OAuth 2.0).
-
-## Parameters
-
-This endpoint accepts a combination of the following parameters, depending on the grant type.
-
-| Parameter | Description |
-| - | - |
-| `client_id` | Client identifier (required) |
-| `client_secret` | Client secret (optional) |
-| `grant_type` | Grant type (required) |
-| `scope` | Scopes requested (optional) |
-| `redirect_uri` | The redirect URI (required for `authorization_code`) |
-| `code` | The authorization code (required for `authorization_code`) |
-| `code_verifier` | PKCE proof key (required for `authorization_code` with PKCE) |
-| `username` | The user name (required for `password`) |
-| `password` | Client identifier (required for `password`) |
-| `acr_values` | Additional authentication information (optional for `password`) |
-| `refresh_token` | Refresh token (required for `refresh_token`) |
-| `device_code` | Device code (required for `urn:ietf:params:oauth:grant-type:device_code`) |
 
 ## Example Request
 
-Here is an example request to retrieve a token with the client credentails grant type:
+Here is an example request to retrieve a token with the client credentials grant type:
 
 ```
 POST /connect/token

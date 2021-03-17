@@ -6,11 +6,11 @@ These are the endpoints available:
 
 | Endpoint | Purpose |
 | - | - |
-| Discovery | Used to retrieve meta data about the authority server |
+| [Discovery](discovery-endpoint.md) | Used to retrieve meta data about the authority server |
 | [Token](token-endpoint.md) | Used to request tokens |
-| Authorize | Used to request tokens or authorization codes via the browser, involving user authentication |
-| User Info | Used to retrieve information about an user |
-| Device Authorization | Used to request device and user codes |
-| Introspection | Used to validate reference tokens |
-| Revocation | Used to revoke access tokens (reference tokens only) and refresh tokens |
-| End Session | Used to trigger single sign-out |
+| [Authorize](authorize-endpoint.md) | Used to request tokens or authorization codes via the browser, involving user authentication |
+| [User Info](userinfo-endpoint.md) | Used to retrieve information about an user |
+| [Device Authorization](deviceauthorization-endpoint.md) | Used to request device and user codes |
+| [Introspection](introspection-endpoint.md) | Used to validate reference tokens |
+| [Revocation](revocation-endpoint.md) | Used to revoke access tokens (reference tokens only) and refresh tokens |
+| [End Session](endsession-endpoint.md) | Used to trigger single sign-out |

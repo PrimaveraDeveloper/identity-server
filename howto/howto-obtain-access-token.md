@@ -81,7 +81,8 @@ using (ITokenClient client = new TokenClient())
                 ClientId = "myclient",
                 ClientSecret = "mysecret",
                 Scope = "myscope"
-            }).ConfigureAwait(false);
+            })
+        .ConfigureAwait(false);
 
     if (!response.IsError)
      {
@@ -90,4 +91,7 @@ using (ITokenClient client = new TokenClient())
  }
 ```
 
-> `TokenClient` provides two interesting features: caching of the access tokens, and it may use the discovery endpoint to find the token endpoint location (as in the previous example we are sending the authority server base address in the request)
+`TokenClient` provides two additional features: 
+
+- It may use the discovery endpoint to find the token endpoint location (as in the previous example we are sending the authority server base address in the request).
+- Caching of the access tokens.

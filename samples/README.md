@@ -1,8 +1,6 @@
 # Samples
 
-This chapter includes samples that illustrate IAM concepts, common integration scenarios, customization, etc.
-
-The samples are organized by theme.
+This chapter includes samples, organized by theme, that illustrate IAM concepts, common integration scenarios, customization, etc.
 
 > The samples source code is available along with Identity Server's source code.
 

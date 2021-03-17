@@ -30,7 +30,7 @@ The current version of Identity Server is **version 4.5**.
 
 Version 5.0, developed with [.NET Core 3.1](https://dotnet.microsoft.com/download/dotnet-core/3.1) and [Duende Identity Server](https://duendesoftware.com/products/identityserver), is currently under development and will be available soon.
 
-> The documentation available here is designed for Version 5.0. Most of it also applies to Version 4.5.
+> The documentation available here is designed for version 5.0. Most of it also applies to version 4.5.
 
 ### Identity Server 4.5
 
@@ -38,7 +38,7 @@ This version updated Identity Server to be compatible with [.NET Core 2.1](https
 
 ### Identity Server 4.0
 
-This was the first major release of Identity Server, developed with .NET Core 2.0 and and [IdentityServer4](https://github.com/IdentityServer/IdentityServer4).
+This was the first major release of Identity Server, developed with .NET Core 2.0 and [IdentityServer4](https://github.com/IdentityServer/IdentityServer4).
 
 ## Release Notes
 

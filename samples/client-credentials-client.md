@@ -24,7 +24,7 @@ The resource server will respond successfully only if that access token is valid
 
 This sample requires the following resources to be configured in the back-office:
 
-> You can use the file `ClientCredentialsClient.authzspec.json` to import these resources in the back-office.
+> Use `ClientCredentialsClient.authzspec.json` to import these resources in the back-office.
 
 ### Clients
 
@@ -57,17 +57,17 @@ When the console application is run it will:
 
 The only aspects worth noting is how the access token is obtained from Identity Server and that access token is sent in the requests to the API.
 
-### Obtaining the access token with `HttpClient`
+### Obtaining the Access Token with `HttpClient`
 
 This is implemented in `Application.RetrieveAcessTokenWithHttpClientAsync()`.
 
-### Obtaining the access token with `TokenClient`
+### Obtaining the Access Token with `TokenClient`
 
 This is implemented in `Application.RetrieveAcessTokenWithTokenClientAsync()`.
 
 Notice that the code is simpler as you do not have to deal with how the request should be encoded, deserialized, etc.
 
-### Setting the access token in the API requests
+### Setting the Access Token in the API requests
 
 See `Application.RetrieveClientsAsync()`. The access token is sent in the `Authorization` header:
 

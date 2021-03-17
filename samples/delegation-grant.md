@@ -30,7 +30,7 @@ The scenario described above can be implemented using the `Delegation` grant, wh
 
 This sample requires the following resources to be configured in the back-office:
 
-> You can use the file `DelegationGrant.authzspec.json` to import these resources in the back-office.
+> Use `DelegationGrant.authzspec.json` to import these resources in the back-office.
 
 ### API Scopes
 
@@ -267,7 +267,7 @@ services
         });
 ```
 
-### How the front-end calls the middle-tier
+### How the Front-end Calls the Middle-tier
 
 After authentication occurs, the front-end comes to possession of an access token and an identity token associated with the signed-in user.
 
@@ -374,7 +374,7 @@ public async Task<IActionResult> SignedInAsync()
 
 > The request itself is straightforward and just uses `HttpClient` (see `InvokeMiddleTierApiAsync()`).
 
-### How the middle-tier calls the back-end (Delegation)
+### How the Middle-tier Calls the Back-end (Delegation)
 
 When the `PrincipalController` in the middle-tier API receives the request it performs 3 steps to compose its response:
 
@@ -414,7 +414,7 @@ private async Task<(string, string)> ExchangeAccessTokenAsync(string accessToken
 
 This is a just a token request to IDS, using the `TokenClient` available in Hydrogen. The magic happens in the grant type requested (`delegation`) and in the `token` parameter where the original token is sent.
 
-### How the back-end responds
+### How the Back-end Responds
 
 The response from the back-end API is a simple API response, building the result, again, from the user claims and the access token (just to be able to show in the front-end application).
 
