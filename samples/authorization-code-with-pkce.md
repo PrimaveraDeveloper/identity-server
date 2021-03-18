@@ -98,7 +98,6 @@ public void ConfigureServices(IServiceCollection services)
 
                 options.Scope.Add("profile");
                 options.Scope.Add("email");
-                options.Scope.Add("identityserver4");
 
                 options.Events = new OpenIdConnectEvents()
                 {
