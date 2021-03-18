@@ -1,37 +1,34 @@
-# Sample - Hybrid Client with Consent
+# Sample - Authorization Code with PKCE Client
 
-This sample shows how to create a client application that uses the Hybrid flow to authenticate users and request them consents.
+This sample shows how to create a client application that uses the Authorization Code with PKCE flow to authenticate users.
 
 The projects required for this sample are:
 
-- `HybridClientWithConsent.csproj`
+- `AuthorizationCodeWithPkceClient.csproj`
 
 ## Concept
 
-The hybrid grant type allows client applications to authenticate users with Identity Server and perform API calls using the identity token issued for the authenticated user.
+The authorization code grant type allows client applications to authenticate end-users and invoke API operations using the tokens issued by Identity Server.
 
-You can associate an extra requirement to present the user with a consent, to inform him of the "permissions" he will be granting to the application and allow him to accept or deny them.
-
-> After the user grants the consent, he will always have the possibility to revoke it from the account front-office (under Security/Consents). Once the consent is revoked, the application will no longer be able to perform requests on behalf of the user and will be required to repeat the authorization flow.
+PKCE (Proof Key for Code Exchange) adds an extra layer of security that prevents interception of the authorization code.
 
 ## Resources Configuration
 
 This sample requires the following resources to be configured in the back-office:
 
-> Use `HybridClientWithConsent.authzspec.json` to import these resources in the back-office.
+> Use `AuthorizationCodeWithPkceClient.authzspec.json` to import these resources in the back-office.
 
 ### Clients
 
 | Configuration | Value |
 | - | - |
-| Client Id. | `identityserver-sample-hybridclientwithconsent` |
+| Client Id. | `sample-authorizationcode-pkce` |
 | Require client secret | `false` |
-| Require consent | `true` |
-| Allow remembering consent | `true` |
-| Allow access tokens via browser | `true` |
-| Require PKCE | `false` |
-| Allowed Grant types | `hybrid` |
-| Allowed Scopes | `openid email profile identityserver4` |
+| Require consent | `false` |
+| Allow access tokens via browser | `false` |
+| Require PKCE | `true` |
+| Allowed Grant types | `authorization_code` |
+| Allowed Scopes | `openid email profile` |
 | Redirect URIs | `https://localhost:[PORT]/signin-oidc` |
 | Post-logout redirect URIs | `https://localhost:[PORT]/signout-callback-oidc` |
 
@@ -41,21 +38,17 @@ When the application is executed it will open a browser and show the home page.
 
 This page does not require authentication:
 
-![Home Page](_assets/hybrid-client-with-consent-1.png "Home Page")
+![Home Page](_assets/authorization-code-with-pkce-client-1.png "Home Page")
 
 Notice the "Sign-in" menu. This is how authorization and user authentication happens:
 
 1. The user is redirected to the IDS sign-in screen.
 
-2. After he signs-in, the consent is presented so he can accept it:
+2. After he signs-in, he is redirected back to the application:
 
-![User Consent](_assets/hybrid-client-with-consent-2.png "User Consent")
+> Since the client is configured to not require consent, the consent dialog is not presented to the user.
 
-> Notice that "Personal Information" and "Application access" list the scopes requested (see the client configuration and the notes below).
-
-3. After the user accepts the consent, he is redirected back to the application:
-
-![User Claims](_assets/hybrid-client-with-consent-3.png "User Claims")
+![User Claims](_assets/authorization-code-with-pkce-client-2.png "User Claims")
 
 > The page lists the user claims, which are derived directly from the identity token issued by IDS.
 
@@ -94,12 +87,14 @@ public void ConfigureServices(IServiceCollection services)
             (options) =>
             {
                 options.SignInScheme = "Cookies";
-                options.Authority = this.Configuration.GetValue<string>("SAMPLE_AUTHORITYSERVER_BASEADDRESS");
+                options.Authority = this.Configuration
+                    .GetValue<string>("SAMPLE_AUTHORITYSERVER_BASEADDRESS");
                 options.RequireHttpsMetadata = false;
-                options.ClientId = "identityserver-sample-hybridclientwithconsent";
-                options.ResponseType = "code id_token token";
+                options.ClientId = "sample-authorizationcode-pkce";
+                options.ResponseType = "code";
+                options.UsePkce = true;
                 options.SaveTokens = true;
-                options.GetClaimsFromUserInfoEndpoint = true;
+                options.GetClaimsFromUserInfoEndpoint = false;
 
                 options.Scope.Add("profile");
                 options.Scope.Add("email");
@@ -117,7 +112,7 @@ public void ConfigureServices(IServiceCollection services)
 ```
 
 - `AddAuthentication()`, `AddCookie()`, and `AddOpenIdConnect()` configure the whole authentication using OIDC.
-- The `Hybrid` grant flow is requested in `options.ResponseType`.
+- The `Authorization Code` grant flow is requested in `options.ResponseType` and the PKCE is activated with `options.UsePkce`.
 - The client is set in `options.ClientId` and the scopes requested in `options.Scopes`.
 
 ```

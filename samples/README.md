@@ -10,6 +10,7 @@ These samples illustrate the configuration of client applications to integrate w
 
 | Sample | Grant Type | Description |
 | - | - | - |
+| [`AuthorizationCodeWithPkceClient`](authorization-code-with-pkce.md) | Authorization Code | Illustrates a client application (ASP.NET Core) that uses the Authorization Code with PKCE flow to authenticate users |
 | [`ClientCredentialsClient`](client-credentials-client.md) | Client Credentials | Illustrates a client application (Console) that uses the Client Credentials flow to call an API |
 | [`Delegation`](delegation-grant.md) | Delegation | Illustrates a client application (ASP.NET Core) that uses the Delegation flow to call a back-end API on behalf of an user |
 | [`HybridClientWithConsent`](hybrid-client-with-consent.md) | Hybrid | Illustrates a client application (ASP.NET Core) that uses the Hybrid flow to authenticate users and require explicit consent |
