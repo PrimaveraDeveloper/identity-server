@@ -13,17 +13,17 @@ Single sign-out (or Single Logout) refers to the capability of signing-out all t
 
 Given the nature of OIDC - as it relies on cookies to mantain the user sessions state - implementing single sign-out (federated or not) is not trivial and is not "automagically" ensured by the protocol itself or the Identity Provider:
 
-User sessions are stored in cookies (and cookies are per browser and per origin), so:
+As user sessions are stored in cookies (and cookies are per browser and per origin):
 
 - If user A signs-in to application B using browser X, a new session is created.
 - While that session is active, if user A uses application B in the same browser, the same session will be used.
-- If user A signs-in to application B using browser X again, a new session will also created.
-- If user A signs-in to application B using browser Y, yet again a new session will be created.
+- If user A signs-in to application C using browser X again, a new session will also created.
+- If user A signs-in to application C using browser Y, yet again a new session will be created.
 
 Implementing single sign-out starts with 2 decisions:
 
-- If the user signs-out from application A, should all sessions for application A (on all browsers) be automatically signed-out?
-- If the user signs-out from application A, should all sessions for application B be automatically signed-out?
+- If the user signs-out from one application, should all sessions for that application (on all browsers) be automatically signed-out?
+- If the user signs-out from one application, should all sessions for any other application be automatically signed-out?
 
 Out the box, when a client application uses OIDC with any of the available grant types, neither of the previous requirements will be guaranteed. Each application participating in single sign-out will need to implement some sort of mechanism to achieve these requirements.
 
@@ -73,27 +73,29 @@ This sample requires the following resources to be configured in the back-office
 
 ## Behavior
 
-This sample includes two clients - `BackChannelLogoutClient1` and `BackChannelLogoutClient2` - which are fundamentally implemented the same way. This serves only the purpose of demonstrating single sign-out from multiple applications.
+This sample includes two clients - `BackChannelLogoutClient1` and `BackChannelLogoutClient2` - which are fundamentally implemented the same way. They serve the purpose of demonstrating single sign-out with multiple applications involved.
 
-After starting both applications, each will show an home page in the browser. This page is not authenticated.
+After starting both applications, each will show an home page in the browser. These page are not authenticated, thus do not require to the user to enter credentials.
 
 ![Home Page (BackChannelLogoutClient1)](_assets/back-channel-logout-1.png "Home Page (BackChannelLogoutClient1)")
 
 ![Home Page (BackChannelLogoutClient2)](_assets/back-channel-logout-2.png "Home Page (BackChannelLogoutClient2)")
 
-After you sign-in on each of these clients, each will present a new page will with information about the claims, headers and tokens, but also with the response obtained from a call to the IDS Web API (notice that both clients request the `identityserver4` scope for that purpose):
+After the user signs-in on each of the clients, each will present a new page will with information about the claims, headers and tokens, but also with the response obtained from a call to the IDS Web API (notice that both clients request the `identityserver4` scope for that purpose):
 
 ![Signed-in Page (BackChannelLogoutClient1)](_assets/back-channel-logout-3.png "Signed-in Page (BackChannelLogoutClient1)")
 
 ![Signed-in Page (BackChannelLogoutClient2)](_assets/back-channel-logout-4.png "Signed-in Page (BackChannelLogoutClient2)")
 
+Now for single sign-out...
+
 If the user signs-out from `BackChannelLogoutClient1`, the browser will be redirected to the home page (see above).
 
-Apparently nothing happened on `BackChannelLogoutClient2`, but the truth is that the user session was already signed-out using the back-channel notification received. It's just that the browser has no knowledge of that because it happened in the back-end.
+Apparently nothing happened on `BackChannelLogoutClient2`, but the truth is that the user session was already marked for sign-out using the back-channel notification received. It's just that the browser has no knowledge of that because it happened in the back-end.
 
 The next time the user tries to access any protected resource on that client, as the session is no longer valid, the authentication process will be triggered again, and the user login UI will be shown so that the user is required to enter his credentials again:
 
-> Just hit F5 to refresh the current view in the browser.
+> Just hit F5 to refresh the current view in the browser to trigger this behavior.
 
 ![Login (BackChannelLogoutClient2)](_assets/back-channel-logout-5.png "Login (BackChannelLogoutClient2)")
 
@@ -105,7 +107,7 @@ As stated before, both client applications are implemented the same way (althoug
 
 To receive back-channel logout notifications, the client application needs to provide a callback route and have that address configured in the IDS back-office (see Clients above).
 
-This route is implemented in the LogoutController. Notice its shape:
+This route is implemented in `LogoutController`:
 
 ```csharp
 [HttpPost("/logout")]
@@ -172,7 +174,9 @@ services
 
 ### Session Management
 
-To implement single sign-out the OIDC general session management services are not sufficient because they rely solely on cookies. Applications need to keep track somehow of the active sessions for all users so they can determine which sessions need to be signed-out at any moment.
+The OIDC general session management services are not sufficient to implement single sign-out because these rely solely on cookies.
+
+Applications need to keep track somehow of the active sessions for all users so they can determine which sessions need to be signed-out at any moment.
 
 For the purpose of this sample, the session management service is implemented by `IUserSessionManager` and `SampleUserSessionManager`.
 
@@ -235,7 +239,7 @@ public partial interface IUserSessionManager
 }
 ```
 
-> Be aware that for real-world scenarios, this implementation would be improved with things like storage, thread-safety, etc.
+> Be aware that for real-world scenarios, this implementation would need to be improved with things like storage, thread-safety, etc.
 
 When a user starts a new session, `AddSessionAsync()` is called from the `SignedIn` cookie event (in `CookieAuthenticationEventsHandler`):
 
@@ -297,11 +301,11 @@ public override async Task SigningOut(CookieSigningOutContext context)
 
 ### Receiving Back-channel Logout Notifications
 
-Back-channel logout notifications are received in the LogoutController.
+Back-channel logout notifications are received in the `LogoutController`.
 
 When a new notification is received, the application is responsible for:
 
-1. Validate the logout token according to Back-channel logout specification.
+1. Validate the logout token according to back-channel logout specification.
 2. Record the session signed-out.
 3. Trigger the single sign-out.
 
@@ -358,7 +362,7 @@ The token validation is implemented by the `IBackChannelLogoutTokenValidator` se
 
 This validation allows the application to obtain a principal from the logout token, including the session id and the subject id (the user id) of the signed-out session.
 
-Then the controller simply records this session with IUserSessionManager, which, in turn, marks all the other sessions for the same user to be signed-out as soon as they are used again.
+Then the controller simply records this session with `IUserSessionManager`, which, in turn, marks all the other sessions for the same user to be signed-out as soon as they are used again.
 
 ```
 public Task SessionSignedOutAsync(string sessionId, string subjectId, CancellationToken cancellationToken = default)
@@ -383,7 +387,7 @@ public Task SessionSignedOutAsync(string sessionId, string subjectId, Cancellati
 
 The only way to sign-out a session is when the browser tries to use it again. This happens when the user tries to access any protected resource.
 
-The ValidatePrincipal event in CookieAuthenticationEventsHandler is used for that purpose:
+The `ValidatePrincipal` event in `CookieAuthenticationEventsHandler` can be used for that purpose:
 
 ```csharp
 public override async Task ValidatePrincipal(CookieValidatePrincipalContext context)
@@ -426,12 +430,12 @@ public override async Task ValidatePrincipal(CookieValidatePrincipalContext cont
 
 There is a gotcha here. By default, when a cookie session is signed-out it will force the client application to communicate with the IDP the next time a protected resource is accessed.
 
-Wheather this communication trigger a new login depends on other factors, mainly the duration of the OIDC session and when the user signed-in for the last time.
+Wheather this communication actually triggers a new login depends on other factors, mainly the duration of the OIDC session and when the user signed-in for the last time.
 
 To force the login UI always after the back-channel logout, the application does two other things:
 
-1. It sets a variable in the `HttpContext` called `ForceLogin`.
-2. It uses the presence of this variable in the context to "inform" the OIDC that the login should be presented nevertheless. This is implemented in the `OnRedirectToIdentityProvider` event (in `Startup`):
+1. It sets a variable in the `HttpContext` called `ForceLogin` (above).
+2. It uses the presence of this variable in the context to "inform" the OIDC that the login should be presented regardless of other conditions. This is implemented in the `OnRedirectToIdentityProvider` event (in `Startup`):
 
 ```csharp
 private static Task OnRedirectToIdentityProviderAsync(RedirectContext context)
@@ -463,7 +467,7 @@ private static Task OnRedirectToIdentityProviderAsync(RedirectContext context)
 
 ### Services
 
-Notice how the various services are registered in Startup:
+Notice how the various services are registered in `Startup`:
 
 ```csharp
 services
