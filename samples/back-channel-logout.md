@@ -9,7 +9,7 @@ The projects required for this sample are:
 
 ## Concept
 
-Single sign-out (or Single Logout) refers to the capability of signing-out all the sessions for a particular user when he signs-out explicitly from one of these sessions.
+**Single sign-out** (or Single Logout) refers to the capability of signing-out all the sessions for a particular user when he signs-out explicitly from one of these sessions.
 
 Given the nature of OIDC - as it relies on cookies to mantain the user sessions state - implementing single sign-out (federated or not) is not trivial and is not "automagically" ensured by the protocol itself or the Identity Provider:
 
