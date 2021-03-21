@@ -84,7 +84,7 @@ This sample requires the following resources to be configured in the back-office
 
 ## Behavior
 
-When the front-send application is executed it will open a browser in the home page, which does not require authentication:
+When the front-end application is executed it will open a browser in the home page, which does not require authentication:
 
 ![Home Page](_assets/delegation-grant-2.png "Home Page")
 
