@@ -6,22 +6,30 @@ This chapter includes samples, organized by theme, that illustrate IAM concepts,
 
 ## Client Applications
 
-These samples illustrate the configuration of client applications to integrate with Identity Server using different grant types and some not-so-obvious features.
+These samples illustrate the configuration of client applications using different grant types and some not-so-obvious features.
 
-| Sample | Grant Type | Description |
-| - | - | - |
-| [`AuthorizationCodeWithPkceClient`](authorization-code-with-pkce.md) | Authorization Code | Illustrates a client application (ASP.NET Core) that uses the **Authorization Code with PKCE** flow to authenticate users |
-| [`ClientCredentialsClient`](client-credentials-client.md) | Client Credentials | Illustrates a client application (Console) that uses the **Client Credentials** flow to call an API |
+| Sample | Description |
+| - | - |
+| [`AuthorizationCodeWithPkceClient`](authorization-code-with-pkce.md) | Illustrates a client application (ASP.NET Core) that uses the **Authorization Code with PKCE** flow to authenticate users |
+| [`ClientCredentialsClient`](client-credentials-client.md) | Illustrates a client application (Console) that uses the **Client Credentials** flow to call an API |
 | [`Delegation`](delegation-grant.md) | Delegation | Illustrates a client application (ASP.NET Core) that uses the **Delegation** flow to call a back-end API on behalf of an user |
-| [`HybridClientWithConsent`](hybrid-client-with-consent.md) | Hybrid | Illustrates a client application (ASP.NET Core) that uses the **Hybrid** flow to authenticate users and require explicit consent |
+| [`HybridClientWithConsent`](hybrid-client-with-consent.md) | Illustrates a client application (ASP.NET Core) that uses the **Hybrid** flow to authenticate users and require explicit consent |
 
 ## Authentication
 
 These samples illustrate authentication scenarios.
 
-| Sample | Feature | Description |
-| - | - | - |
-| [`BackChannelLogout`](back-channel-logout.md) | Back-channel Logout | Illustrates the implementation of **Single Sign-out** using back-channel logout notifications |
+| Sample | Description |
+| - | - |
+| [`BackChannelLogout`](back-channel-logout.md) | Illustrates the implementation of **single sign-out** using **back-channel logout** notifications |
+
+## Authorization
+
+These samples illustrate authorization scenarios.
+
+| Sample | Description |
+| - | - |
+| [`UserClaimsAuthzPolicy`](user-claims-authorization-policy.md) | Illustrates the implementation of custom authorization in a back-end API using **authorization policies** and the **user claims** of the end-user signed-in in a front-end client  |
 
 ## Important
 
