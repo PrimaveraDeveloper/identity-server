@@ -1,6 +1,6 @@
 # Reference - Token Endpoint
 
-The Token Endpoint can be used by client applications to retrieve access tokens programmatically, using a specific grant type (from the standard grants defined by the specs or extension grant types supported by IDS).
+The token endpoint can be used by client applications to retrieve access tokens programmatically, using a specific grant type (from the standard grants defined by the specs or extension grant types supported by IDS).
 
 ## Route
 
@@ -56,6 +56,7 @@ CONTENT-TYPE application/x-www-form-urlencoded
 
 ## Remarks
 
-You can invoke the endpoint directly as any other HTTP call.
+- The client credentials (`client_id` and `client_secret`) can, alternatively, be provided in the Authorization header (with Basic authentication). 
+- You can invoke the endpoint directly as any other HTTP call.
 
-However, it is easier to use `Primavera.Hydrogen.IdentityModel.Client.TokenClient` as it provides methods tailored for each grant type and it deals with encoding the parameters and parsing the response correctly.
+> It is easier to use `Primavera.Hydrogen.IdentityModel.Client.TokenClient` as it provides methods tailored for each grant type and deals with encoding the parameters and parsing the response correctly.

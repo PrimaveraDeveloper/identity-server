@@ -4,9 +4,9 @@ This chapter includes "how to" guides to help integrate applications with Identi
 
 > The guides without link are not yet available. If you want to suggest new guides, please use the Issues section.
 
-## Obtaining tokens
+## Retrieving tokens
 
-- [How to obtain an access token from Identity Server](howto-obtain-access-token.md)
+- [How to obtain an access token using the client credentials grant type](howto-obtain-client-credentials-access-token.md)
 
 ## Using grant types
 

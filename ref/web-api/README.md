@@ -24,4 +24,3 @@ For privacy reasons, the Web API does not include operations on users, except th
 - Retrieve a list of users.
 - Retrieve a specific user (by id or email).
 - Retrieve, add, and remove user claims.
-- Retrieve, add, and remove user roles.

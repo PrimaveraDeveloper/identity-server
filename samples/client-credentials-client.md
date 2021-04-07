@@ -8,13 +8,13 @@ The projects required for this sample are:
 
 ## Concept
 
-The client credentials grant type allows client applications to invoke APIs protected by OAuth 2.0 scopes using an access token previously obtained from an authority server.
+The client credentials grant type allows client applications to invoke APIs protected by OAuth 2.0 scopes using an access token previously obtained from an authorization server.
 
 This grant type is the the most addequate for server-to-server (machine-to-machine) scenarios, where no user is involved.
 
-When a client application wants to perform the API call, it first contacts the authority server to obtain an access token with the scope(s) required by the API endpoint it wants to call (thus it requires prior knowledge of the API's OAuth requirements).
+When a client application wants to perform the API call, it first contacts the authorization server to obtain an access token with the scope(s) required by the API endpoint it wants to call (thus it requires prior knowledge of the API's OAuth requirements).
 
-If authorized, it will receive the access token and it should pass it along to the resource server in the `Authorization` header.
+If authorized, it will receive the access token. Then it should pass it along to the resource server in the `Authorization` header.
 
 The resource server will respond successfully only if that access token is valid.
 
@@ -41,11 +41,11 @@ This sample requires the following resources to be configured in the back-office
 
 When the console application is run it will:
 
-1. Obtain an access token from the authority server by invoking the Token Endpoint directly.
+1. Obtain an access token from the authority server by invoking the [Token Endpoint](../ref/endpoints/token-endpoint.md) directly.
 
 2. Obtain an access token from the authority server using Hydrogen's `TokenClient`.
 
-> This illustrates an alternative (more convenient) way of retrieving access tokens.
+> This illustrates an alternative (more convenient) way to retrieve access tokens.
 
 3. Invoke IDS Web API to get a page of all the clients available.
 
