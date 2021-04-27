@@ -1,3 +1,0 @@
-# Reference - Back-office
-
-This topic is under development...

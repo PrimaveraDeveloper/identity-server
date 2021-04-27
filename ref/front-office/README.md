@@ -1,3 +1,0 @@
-# Reference - Front-office
-
-This topic is under development...
